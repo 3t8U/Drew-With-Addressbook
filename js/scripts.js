@@ -45,10 +45,13 @@ AddressBook.prototype.deleteContact = function(id) {
 }
 
 //business logic for contacts
-function Contact(firstName, lastName, phoneNumber) {
+function Contact(firstName, lastName, phoneNumber, email, address) {
   this.firstName = firstName,
   this.lastName = lastName,
-  this.phoneNumber = phoneNumber
+  this.phoneNumber = phoneNumber,
+  this.email = email,
+  this.address = address
+
 }
 
 Contact.prototype.fullName = function() {
@@ -73,6 +76,8 @@ $("#show-contact").show();
 $(".first-name").html(contact.firstName);
 $(".last-name").html(contact.lastName);
 $(".phone-number").html(contact.phoneNumber);
+$(".email").html(contact.email);
+$(".address").html(contact.address);
 var buttons = $("#buttons");
 buttons.empty();
 buttons.append("<button class='deleteButton' id =" + contact.id + ">Delete</button>");
@@ -98,10 +103,14 @@ $(document).ready(function() {
     var inputtedFirstName = $("input#new-first-name").val();
     var inputtedLastName = $("input#new-last-name").val();
     var inputtedPhoneNumber = $("input#new-phone-number").val();
+    var inputtedEmail = $("input#new-email").val();
+    var inputtedAddress = $("input#new-address").val();
     $("input#new-first-name").val(""); //These are to empty the the form fields after submission
     $("input#new-last-name").val("");
     $("input#new-phone-number").val("");
-    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
+    $("input#new-email").val("");
+    $("input#new-address").val("");
+    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmail, inputtedAddress);
     addressBook.addContact(newContact);
     displayContactDetails(addressBook);
   });
